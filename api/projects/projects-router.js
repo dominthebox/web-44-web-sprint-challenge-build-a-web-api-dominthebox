@@ -35,13 +35,13 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { name, description } = req.body
-    if (!name || !description) {
+    const { name, description, completed } = req.body
+    if (!name || !description || !completed) {
         res.status(400).json({
             message: 'Please provide a name and description for the project'
         })
     } else {
-        Project.insert({ name, description })
+        Project.insert({ name, description, completed })
             .then(({ id }) => {
                 return Project.get(id)
             })
