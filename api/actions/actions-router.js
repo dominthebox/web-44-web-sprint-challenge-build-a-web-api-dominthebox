@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const { notes, description, project_id } = req.body
-    if (!notes || !description || project_id) {
+    if (!notes || !description || !project_id) {
         res.status(400).json({
             message: 'Please provide notes, description, and project_id for the action'
         })
@@ -58,10 +58,10 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    const { note, description, project_id } = req.body
-    if (!note || !description || !project_id) {
+    const { notes, description, project_id, completed } = req.body
+    if (!notes || !description || !project_id || !completed) {
         res.status(400).json({
-            message: 'Please provide updates to name,description and project_id for the Action'
+            message: 'Please provide updates to notes, description, completed, and project_id for the Action'
         })
     } else {
         Action.get(req.params.id)
