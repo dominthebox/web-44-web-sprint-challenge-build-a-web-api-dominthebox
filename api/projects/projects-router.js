@@ -65,8 +65,8 @@ router.put('/:id', (req, res) => {
         })
     } else {
         Project.get(req.params.id)
-            .then(stuff => {
-                if (!stuff) {
+            .then(project => {
+                if (!project) {
                     res.status(404).json({
                         message: 'The project with specified ID does not exist'
                     })
@@ -94,7 +94,7 @@ router.put('/:id', (req, res) => {
     }
 });
 
-router.delete('./:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const project = await Project.get(req.params.id)
         if (!project) {
